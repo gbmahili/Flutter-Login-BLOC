@@ -6,6 +6,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Log Me In',
       home: Scaffold(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
