@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
-  Color black = Colors.blueGrey;
+  final Color black = Colors.blueGrey;
+  @override
+  Widget build(BuildContext context) {
+    return new Home(black: black,);
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({
+    Key key,
+    @required this.black,
+  }) : super(key: key);
+
+  final Color black;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowMaterialGrid: false,
       title: 'Log Me In',
       home: Scaffold(
         appBar: AppBar(
@@ -33,7 +48,10 @@ class App extends StatelessWidget {
                     color: black,
                     icon: Icon(Icons.school),
                     onPressed: () {
-                      // Navigator.push(context, Navig)
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => School()));
                     },
                   ),
                   SizedBox(
@@ -45,6 +63,20 @@ class App extends StatelessWidget {
           ],
         ),
         body: Center(child: Text('hi')),
+      ),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class School extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('School'),
+        ),
       ),
       debugShowCheckedModeBanner: false,
     );
