@@ -26,13 +26,41 @@ class LoginScreen extends StatelessWidget {
             Icons.motorcycle,
             color: black,
           ),
-          actions: <Widget>[
-            new Actions(black: black)
-          ],
+          actions: <Widget>[new Actions(black: black)],
         ),
-        body: Container(),
+        body: new Container(
+          margin: new EdgeInsets.all(20.0),
+          child: new Column(
+            children: <Widget>[
+              emailField(),
+              passwordlField()
+            ],
+          ),
+        ),
       ),
       debugShowCheckedModeBanner: false,
+    );
+  }
+
+  Widget emailField() {
+    return new TextField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: new InputDecoration(
+        hintText: 'you@email.com',
+        labelText: 'Email Address',
+        hintStyle: TextStyle(color: black)
+      ),
+    );
+  }
+
+  Widget passwordlField() {
+    return new TextField(
+      obscureText: true,
+      decoration: new InputDecoration(
+        hintText: 'Password',
+        labelText: 'Password',
+        hintStyle: TextStyle(color: black)
+      ),
     );
   }
 }
