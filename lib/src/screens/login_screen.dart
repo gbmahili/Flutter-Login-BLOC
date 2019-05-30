@@ -52,6 +52,7 @@ class LoginScreen extends StatelessWidget {
       decoration: new InputDecoration(
           hintText: 'you@email.com',
           labelText: 'Email Address',
+          labelStyle: TextStyle(color: black),
           hintStyle: TextStyle(color: black)),
     );
   }
@@ -60,9 +61,11 @@ class LoginScreen extends StatelessWidget {
     return new TextField(
       obscureText: true,
       decoration: new InputDecoration(
-          hintText: 'Password',
-          labelText: 'Password',
-          hintStyle: TextStyle(color: black)),
+        hintText: 'Password',
+        labelText: 'Password',
+        labelStyle: TextStyle(color: black),
+        hintStyle: TextStyle(color: black),
+      ),
     );
   }
 
@@ -72,7 +75,7 @@ class LoginScreen extends StatelessWidget {
         'Login',
         style: TextStyle(color: Colors.white),
       ),
-      color: Colors.blue,
+      color: black,
       onPressed: () {},
     );
   }
