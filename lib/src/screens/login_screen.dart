@@ -33,7 +33,11 @@ class LoginScreen extends StatelessWidget {
           child: new Column(
             children: <Widget>[
               emailField(),
-              passwordlField()
+              passwordlField(),
+              SizedBox(
+                height: 20.0,
+              ),
+              submitButton(),
             ],
           ),
         ),
@@ -46,10 +50,9 @@ class LoginScreen extends StatelessWidget {
     return new TextField(
       keyboardType: TextInputType.emailAddress,
       decoration: new InputDecoration(
-        hintText: 'you@email.com',
-        labelText: 'Email Address',
-        hintStyle: TextStyle(color: black)
-      ),
+          hintText: 'you@email.com',
+          labelText: 'Email Address',
+          hintStyle: TextStyle(color: black)),
     );
   }
 
@@ -57,10 +60,20 @@ class LoginScreen extends StatelessWidget {
     return new TextField(
       obscureText: true,
       decoration: new InputDecoration(
-        hintText: 'Password',
-        labelText: 'Password',
-        hintStyle: TextStyle(color: black)
+          hintText: 'Password',
+          labelText: 'Password',
+          hintStyle: TextStyle(color: black)),
+    );
+  }
+
+  Widget submitButton() {
+    return RaisedButton(
+      child: Text(
+        'Login',
+        style: TextStyle(color: Colors.white),
       ),
+      color: Colors.blue,
+      onPressed: () {},
     );
   }
 }
