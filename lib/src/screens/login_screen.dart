@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_bloc/src/screens/school_screen.dart';
+import '../blocs/bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
@@ -34,10 +35,9 @@ class LoginScreen extends StatelessWidget {
             children: <Widget>[
               emailField(),
               passwordlField(),
-              SizedBox(
-                height: 20.0,
-              ),
+              SizedBox(height: 20.0),
               submitButton(),
+              SizedBox(height: 20.0),
             ],
           ),
         ),
@@ -47,25 +47,50 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget emailField() {
-    return new TextField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: new InputDecoration(
-          hintText: 'you@email.com',
-          labelText: 'Email Address',
-          labelStyle: TextStyle(color: black),
-          hintStyle: TextStyle(color: black)),
+    // Applying the bloc using the StreamBuilder
+    // whenever a key is pressed, that key pressed is going to the onChanged function,
+    // The onChanged function is taking it sending it to the bloc.changedemail sink
+    // Sink adds it to the stream...once streams detects change of data, it calls the
+    // builder which updates the state
+    // new
+
+    return StreamBuilder(
+      stream: bloc.email, //name of the stream as defined in the bloc
+      builder: (context, snapshot) {
+        //snapshot contains whatever information came across the stream
+        return new TextField(
+          // onChanged: (newValue){
+          //   bloc.changeEmail(newValue);
+          // },
+          //shortcut to the onChanged above is:
+          onChanged: bloc.changeEmail,
+          keyboardType: TextInputType.emailAddress,
+          decoration: new InputDecoration(
+              hintText: 'you@email.com',
+              labelText: 'Email Address',
+              labelStyle: TextStyle(color: black),
+              hintStyle: TextStyle(color: black),
+              errorText: snapshot.error),
+        );
+      },
     );
   }
 
   Widget passwordlField() {
-    return new TextField(
-      obscureText: true,
-      decoration: new InputDecoration(
-        hintText: 'Password',
-        labelText: 'Password',
-        labelStyle: TextStyle(color: black),
-        hintStyle: TextStyle(color: black),
-      ),
+    return StreamBuilder(
+      stream: bloc.password,
+      builder: (context, snapshot) {
+        return new TextField(
+          onChanged: bloc.changePassword,
+          obscureText: true,
+          decoration: new InputDecoration(
+              hintText: 'Password',
+              labelText: 'Password',
+              labelStyle: TextStyle(color: black),
+              hintStyle: TextStyle(color: black),
+              errorText: snapshot.error),
+        );
+      },
     );
   }
 

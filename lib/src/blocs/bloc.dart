@@ -13,7 +13,7 @@ class Bloc extends Object with Validators {
   final _password = StreamController<String>();
   final _testStream = StreamController<String>();
 
-  // Add data to stream
+  // Add data to stream...you can do this in the widget
   // When we call bloc.email, it will return a Stream of String
   Stream<String> get email => _email.stream.transform(validateEmail);
   Stream<String> get password => _password.stream.transform(validatePassword);
@@ -42,3 +42,7 @@ class Bloc extends Object with Validators {
     _testStream.close();
   }
 }
+
+// How to apply a bloc as a single source of data
+// We create an instance of the bloc at the end of the Bloc...
+final bloc = Bloc();
